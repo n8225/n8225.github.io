@@ -15,6 +15,9 @@ var entryArray = [];
 var rawArray = [];
 var textarea;
 var content;
+var totalEntries;
+var totalFail = 0;
+var totalPass = 0;
 
 function getText() {
     document.getElementById("pass").value = "Passed" + "\n\n";
@@ -47,7 +50,7 @@ function getContent(text) {
 function linetoArray() {
     dirtyArray = content.split(/\r?\n/);
     rawArray = dirtyArray.filter(function (v) { return v !== '' });
-
+    totalEntries = rawArray.length;
     for (var i = 0, len = rawArray.length; i < len; i++) {
         //document.getElementById("result").value += rawArray[i] + "\n";
         entryArray[i] = new Object;
@@ -58,12 +61,13 @@ function linetoArray() {
         findPattern(rawArray[i], i);
         if (entryArray[i].pass == true) {
             document.getElementById("pass").value += entryArray[i].entryName + "\n";
+            totalPass += 1;
         } else {
-            document.getElementById("fail").value += entryArray[i].entryName + ": " + entryArray[i].error +"\n";
+            document.getElementById("fail").value += entryArray[i].entryName + ": " + entryArray[i].error + "\n";
+            totalFail += 1;
         }
-        
     }
-
+    document.getElementById("alert").innerHTML += " Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.";
 };
 
 function findPattern(textarea, i) {
