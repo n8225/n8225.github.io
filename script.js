@@ -20,6 +20,8 @@ var totalFail = 0;
 var totalPass = 0;
 
 function getText() {
+    totalFail = 0;
+    totalPass = 0;
     document.getElementById("pass").value = "Passed" + "\n\n";
     document.getElementById("fail").value = "Failed" + "\n\n";
     document.getElementById("alert").innerHTML = "";
@@ -29,6 +31,7 @@ function getText() {
 };
 
 function getUrl() {
+    document.getElementById("textarea").value = "";
     var xmlhttp = new XMLHttpRequest();
     url = document.getElementById("url").value;
     xmlhttp.onreadystatechange = function () {
