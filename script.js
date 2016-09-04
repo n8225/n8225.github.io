@@ -51,7 +51,7 @@ function getContent(text) {
         cutOne = text.split("<!-- BEGIN SOFTWARE LIST -->");
         cutTwo = cutOne[1].split("<!-- END SOFTWARE LIST -->");
         //document.getElementById("fail").value = cutTwo[0];
-        content = cutTwo[0].replace(/^\#.*$|^\_.*$|^See.*$|^Some.*$|^\*.*\*$|^\s\*.*\*$|^CMS.*$/mg, "");
+        content = cutTwo[0].replace(/^\#.*$|^\_.*$|^See.*$|^Some.*$|^\*.*\*$|^\s\*.*\*$|^CMS.*$|^\*\*\[.*$/mg, "");
         //document.getElementById("fail").value = content;
     } else {
         content = text;
