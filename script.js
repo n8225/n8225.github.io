@@ -26,14 +26,15 @@ function getText() {
 };
 
 function getContent(text) {
-    if (/^\<\!\-\-\sBEGIN/.test(text) == true){
+    if (/^\<\!\-\-\sBEGIN/mg.test(text) == true) {
+        console.log("if");
         cutOne = text.split("<!-- BEGIN SOFTWARE LIST -->");
         cutTwo = cutOne[1].split("<!-- END SOFTWARE LIST -->");
         //document.getElementById("fail").value = cutTwo[0];
         content = cutTwo[0].replace(/^\#.*$|^\_.*$|^See.*$|^Some.*$|^\*.*\*$|^\s\*.*\*$|^CMS.*$/mg, "");
+        //document.getElementById("fail").value = content;
     } else {
         content = text;
-
     }
     while (content.indexOf("\r\n\r\n") >= 0) {
         content = content.replace(/\r\n\r\n/g, "\r\n")
