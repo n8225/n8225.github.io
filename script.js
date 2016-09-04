@@ -28,6 +28,20 @@ function getText() {
     linetoArray();
 };
 
+function getUrl() {
+    var xmlhttp = new XMLHttpRequest();
+    url = document.getElementById("url").value;
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            //document.getElementById("fail").value = this.responseText;
+            document.getElementById("textarea").value = this.responseText;
+        }
+    };
+    xmlhttp.open("GET", url, false);
+    xmlhttp.send();
+    getText();
+}
+
 function getContent(text) {
     if (/^\<\!\-\-\sBEGIN/mg.test(text) == true) {
         console.log("if");
