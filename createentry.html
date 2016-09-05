@@ -9,45 +9,74 @@
 
 <body>
     <div class="wrapper">
-        <header class="header">Awesome-SelfHosted Helper</header>
+        <header class="header"><h1>Awesome-SelfHosted Helper</h1></header>
         <div class="content-wrap">
             <div>
                 <form class="main">
-                    <label for="name">
-                        Name
+
+                    <div class="group">
                         <input type="text" name="name" id="name" onkeyup="formChanged()" onchange="formChanged()" required />
-                    </label>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Name</label>
+                    </div>
 
-                    <label for="site">
-                        Link
+                    <div class="group">
                         <input type="text" name="sitelink" id="site" onkeyup="formChanged()" onchange="formChanged()" required />
-                    </label>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Link</label>
+                    </div>
 
-                    <label for="desc">
-                        Description
+                    <div class="checkbox">
+                        <label for="proprietary">
+                            <input type="checkbox" name="proprietary" id="proprietary" onkeyup="formChanged()" onchange="formChanged()" required />
+                            <i class="helper"></i>
+                            Proprietary Software
+                        </label>
+                    </div>
+
+                    <div class="group">
                         <input type="text" name="description" id="desc" maxlength="250" pattern=".*\." onkeyup="formChanged()" onchange="formChanged()" required />
-                    </label>
-                    <label for="demo">
-                        Demo
-                        <input type="text" name="demo" id="demo" onkeyup="formChanged()" onchange="formChanged()" />
-                    </label>
-                    <label for="source">
-                        Source Code
-                        <input type="text" name="sourcecode" id="source" onkeyup="formChanged()" onchange="formChanged()" />
-                    </label>
-                    <label for="license">
-                        License
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Description</label>
+                    </div>
+
+                    <div class="group">
+                        <input type="text" name="demo" id="demo" onkeyup="formChanged()" onchange="formChanged()" required />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Demo</label>
+                    </div>
+
+                    <div class="group">
+                        <input type="text" name="sourcecode" id="source" onkeyup="formChanged()" onchange="formChanged()" required />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Source Code</label>
+                    </div>
+
+                    <div class="group">
                         <input type="text" name="license" id="license" onkeyup="formChanged()" onchange="formChanged()" required />
-                    </label>
-                    <label for="language">
-                        Language
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>License</label>
+                    </div>
+
+                    <div class="group">
                         <input type="text" name="language" id="language" onkeyup="formChanged()" onchange="formChanged()" required />
-                    </label>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Language</label>
+                    </div>
+
                     <br /><input type="button" value="Log Entry" onclick="logEntry()" />
                 </form>
-            </div>
+                </div>
             <div class="result">
-                <p id="formResult">Some stuff</p>
+                <h3>Your Entry will show up here.</h3>
+                <p id="formResult"></p>
                 <p id="formLog"></p>
             </div>
         </div>

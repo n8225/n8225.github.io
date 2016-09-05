@@ -1,9 +1,16 @@
-﻿.wrapper{
+﻿@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+body{
+    background-color:gainsboro;
+    font-family: 'Roboto', sans-serif;
+}
+.wrapper{
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
-  display: flex;  
+  display: flex;
+  font-family:'Roboto';
   
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
@@ -22,6 +29,8 @@
   height: 100px;
     flex: 1 100%;
       padding: 10px;
+      margin-bottom:30px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .footer {
@@ -31,7 +40,9 @@
 }
 
 .content-wrap{
-    background-color:aqua;
+    border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -40,21 +51,22 @@
     margin:auto;
     flex-direction: row nowrap;
     flex: 0 0 80%;
-    padding: 20px;
+    padding: 0px;
 
 }
 
-.main {
-  text-align: left;
-  background: deepskyblue;
-  flex: 1 0 25%;
 
+.main {
+      background: white;
+  text-align: left;
+  flex: 1 0 25%;
+  padding: 10px;
   display:flex;
   flex-flow: column;
 }
 
 .result {
-  background: hotpink;
+  background: white;
   flex: 5 0 75%;
 
 }
@@ -66,7 +78,127 @@ margin: 0;
 
 
 form > * {
-  padding: 10px;
+  padding: 5px;
   flex: 1 auto;
 }
+
+/* form starting stylings ------------------------------- */
+.group            { 
+  position:relative; 
+  margin-bottom:10px; 
+}
+input               {
+  font-size:16px;
+  padding:0px 10px 5px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+input:focus         { outline:none; }
+
+/* LABEL ======================================= */
+.group > label                {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:8px;
+  top:7px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label        {
+  top:-10px;
+  font-size:14px;
+  color:#5264AE;
+}
+
+/* BOTTOM BARS ================================= */
+.bar    { position:relative; display:block; width:300px; }
+.bar:before, .bar:after     {
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#5264AE; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from { background:#5264AE; }
+  to    { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+    from { background:#5264AE; }
+  to    { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+    from { background:#5264AE; }
+  to    { width:0; background:transparent; }
+}
+
+/*Checkbox*/
+
+.group-check            { 
+  position:relative; 
+  margin-bottom:10px; 
+}
+
+.checkbox > label                {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  left:8px;
+  top:7px;
+
+}
+
+.checkbox {
+  position: relative;
+  top: -0.375rem;
+  margin: 0 1rem 0 0;
+  cursor: pointer;
+
+}
+
+
 
