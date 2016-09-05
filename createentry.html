@@ -2,27 +2,56 @@
 <html>
 <head>
     <title></title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet" />
 </head>
+
 <body>
-    <form>
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" onkeyup="formChanged()" onchange="formChanged()" required />
-        <label for="site">Site Link</label>
-        <input type="text" name="sitelink" id="site" onkeyup="formChanged()" onchange="formChanged()" required />
-        <label for="desc">Description</label>
-        <input type="text" name="description" id="desc" maxlength="250" pattern=".*\." onkeyup="formChanged()" onchange="formChanged()" required />
-        <label for="demo">Demo</label>
-        <input type="text" name="demo" id="demo" onkeyup="formChanged()" onchange="formChanged()" />
-        <label for="source">Source Code</label>
-        <input type="text" name="sourcecode" id="source" onkeyup="formChanged()" onchange="formChanged()" />
-        <label for="license">License</label>
-        <input type="text" name="license" id="license" onkeyup="formChanged()" onchange="formChanged()" required />
-        <label for="language">Language</label>
-        <input type="text" name="language" id="language" onkeyup="formChanged()" onchange="formChanged()" required />
-        <p id="formResult"></p><input type="button" value="Log Entry" onclick="logEntry()" />
-    </form>
-    <p id="formLog"></p>
+    <div class="wrapper">
+        <header class="header">Awesome-SelfHosted Helper</header>
+        <div class="content-wrap">
+            <div>
+                <form class="main">
+                    <label for="name">
+                        Name
+                        <input type="text" name="name" id="name" onkeyup="formChanged()" onchange="formChanged()" required />
+                    </label>
+
+                    <label for="site">
+                        Link
+                        <input type="text" name="sitelink" id="site" onkeyup="formChanged()" onchange="formChanged()" required />
+                    </label>
+
+                    <label for="desc">
+                        Description
+                        <input type="text" name="description" id="desc" maxlength="250" pattern=".*\." onkeyup="formChanged()" onchange="formChanged()" required />
+                    </label>
+                    <label for="demo">
+                        Demo
+                        <input type="text" name="demo" id="demo" onkeyup="formChanged()" onchange="formChanged()" />
+                    </label>
+                    <label for="source">
+                        Source Code
+                        <input type="text" name="sourcecode" id="source" onkeyup="formChanged()" onchange="formChanged()" />
+                    </label>
+                    <label for="license">
+                        License
+                        <input type="text" name="license" id="license" onkeyup="formChanged()" onchange="formChanged()" required />
+                    </label>
+                    <label for="language">
+                        Language
+                        <input type="text" name="language" id="language" onkeyup="formChanged()" onchange="formChanged()" required />
+                    </label>
+                    <br /><input type="button" value="Log Entry" onclick="logEntry()" />
+                </form>
+            </div>
+            <div class="result">
+                <p id="formResult">Some stuff</p>
+                <p id="formLog"></p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
