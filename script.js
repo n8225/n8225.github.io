@@ -22,9 +22,9 @@ var totalPass = 0;
 function getText() {
     totalFail = 0;
     totalPass = 0;
-    document.getElementById("pass").value = "Passed" + "\n\n";
-    document.getElementById("fail").value = "Failed" + "\n\n";
-    document.getElementById("alert").innerHTML = "";
+    //document.getElementById("pass").value = "Passed" + "\n\n";
+    //document.getElementById("fail").value = "Failed" + "\n\n";
+    //document.getElementById("alert").innerHTML = "";
     textarea = document.getElementById("textarea").value;
     getContent(textarea);
     linetoArray();
@@ -68,6 +68,16 @@ function linetoArray() {
     dirtyArray = content.split(/\r?\n/);
     rawArray = dirtyArray.filter(function (v) { return v !== '' });
     totalEntries = rawArray.length;
+    var alertid = document.getElementById("alert");
+    var failcid = document.getElementById("failcont");
+    var att = document.createAttribute("class");
+    var att2 = document.createAttribute("class");
+    att.value = "content-wrap2";
+    att2.value = "content-wrap2";
+    failcid.setAttributeNode(att);
+    alertid.setAttributeNode(att2);
+
+
     for (var i = 0, len = rawArray.length; i < len; i++) {
         //document.getElementById("result").value += rawArray[i] + "\n";
         entryArray[i] = new Object;
@@ -77,14 +87,25 @@ function linetoArray() {
         entryArray[i].error = "";
         findPattern(rawArray[i], i);
         if (entryArray[i].pass == true) {
-            document.getElementById("pass").value += entryArray[i].entryName + "\n";
+            //document.getElementById("pass").innerHTML += entryArray[i].entryName + "<br\>";
             totalPass += 1;
         } else {
-            document.getElementById("fail").value += entryArray[i].entryName + ": " + entryArray[i].error + "\n";
+            //document.getElementById("fail").innerHTML += entryArray[i].entryName + ": " + entryArray[i].error + "<br\>";
+            textnode = document.createTextNode(entryArray[i].entryName + ": " + entryArray[i].error);
+            node = document.createElement("LI");
+            node.appendChild(textnode);
+            document.getElementById("fail").appendChild(node);
             totalFail += 1;
         }
     }
-    document.getElementById("alert").innerHTML += " Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.";
+    //document.getElementById("alert").innerHTML += " Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.";
+    if (totalFail > 0) {
+        document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode("Error(s) Found, check your syntax!")));
+    } else {
+        document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode("All entries passed!")));
+    }
+    document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode(" Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.")));
+
 };
 
 function findPattern(textarea, i) {
@@ -119,7 +140,7 @@ function findPattern(textarea, i) {
         entryArray[i].pass = true;
         entryArray[i].warnings += "No Source";
     } else {
-        document.getElementById("alert").innerHTML = "Error(s) Found, check your syntax!";
+        //document.getElementById("alert").innerHTML = "Error(s) Found, check your syntax!";
         entryArray[i].pass = false;
         moreTests(textarea, i);
     }
