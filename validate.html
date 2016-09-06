@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="title">
+                <h1>Awesome-SelfHosted Helper</h1>
+            </div>
+            <div class="nav">
+                <ul><li><a href="index.html">Entry Creator</a></li><li><a href="validate.html">Validater</a></li></ul>
+            </div>
+        </header>
+        <div class="content-wrap2">
+            <div class="form-group form2">
+                <textarea id="textarea" required="required"></textarea>
+                <label for="input" class="input-label"></label>
+                <i class="bar"></i>
+                <p>Paste the whole Awesome-Selfhosted README.md here or just a single entry and hit ok.</p>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="button" onclick="getText()"><span>Submit</span></button>
+            </div>
+        </div>
+        <div class="content-wrap2">
+            <div class="form-group form2">
+                <textarea id="url" required="required">https://raw.githubusercontent.com/Kickball/awesome-selfhosted/master/README.md</textarea>
+                <label for="input" class="input-label"></label>
+                <i class="bar"></i>
+                <p>or enter the url to the README.md.</p>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="button" onclick="getUrl()"><span>Submit</span></button>
+            </div>
+        </div>
+            <div id="alert">
+
+            </div>
+        <div id="failcont">
+            <ul id="fail"></ul>
+        </div>
+
+</body>
+</html>

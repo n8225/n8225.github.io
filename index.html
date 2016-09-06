@@ -1,25 +1,95 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <title></title>
+    <meta charset="utf-8" />
     <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet" />
 </head>
+
 <body>
-    <h1>Awesome-Selfhosted-Scanner</h1>
-    <p>Paste the whole Awesome-Selfhosted README.md here or just a single entry and hit ok.</p>
-    <textarea rows="4" cols="150" id="textarea"></textarea>
-    <button onclick="getText()">OK</button>
-    <p>or enter the url to the README.md.</p>
-    <textarea rows="1" cols="150" id="url">https://raw.githubusercontent.com/Kickball/awesome-selfhosted/master/README.md</textarea>
-    <button onclick="getUrl()">OK</button>
-    <p id="alert" class="output"></p>
-    <textarea rows="35" cols="30" id="pass"></textarea><textarea rows="35" cols="117" id="fail"></textarea>
+    <div class="wrapper">
+        <header class="header">
+            <div class="title">
+                <h1>Awesome-SelfHosted Helper</h1>
+            </div>
+            <div class="nav">
+                <ul><li><a href="index.html">Entry Creator</a></li><li><a href="validate.html">Validater</a></li></ul>
+            </div>
+        </header>
+        <div class="content-wrap">
+            <div>
+                <form class="main">
+
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" onkeyup="formChanged()" onchange="formChanged()" required />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="input-label">Name</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="sitelink" id="site" onkeyup="formChanged()" onchange="formChanged()" required />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="input-label">Link</label>
+                    </div>
+
+                    <!--<div class="checkbox">
+                        <label for="proprietary">
+                            <input type="checkbox" name="proprietary" id="proprietary" onkeyup="formChanged()" onchange="formChanged()" required />
+                            <i class="helper"></i>
+                            Non-Free Dependency
+                        </label>
+                    </div>-->
+
+                    <div class="form-group">
+                        <input type="text" name="description" id="desc" maxlength="250" pattern=".*\." onkeyup="formChanged()" onchange="formChanged()" required />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="input-label">Description</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="demo" id="demo" onkeyup="formChanged()" onchange="formChanged()" required />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="input-label">Demo</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="sourcecode" id="source" onkeyup="formChanged()" onchange="formChanged()" required />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="input-label">Source Code</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="license" id="license" onkeyup="formChanged()" onchange="formChanged()" required />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="input-label">License</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="language" id="language" onkeyup="formChanged()" onchange="formChanged()" required />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="input-label">Language</label>
+                    </div>
+
+                    <button type="submit" class="button" onclick="logEntry()">
+                        <span>Log Entry</span>
+                    </button>
+                </form>
+                </div>
+            <div class="result">
+                <h2>Your Entry will show up here.</h2>
+                <p id="formResult"></p>
+                <p id="formLog"></p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
-
-
-
-
-
-
-
