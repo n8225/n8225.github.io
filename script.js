@@ -201,7 +201,8 @@ function formChanged() {
     } else if (demo != "" && sourcecode != "") {
         entryResult = "* [" + name + "](" + sitelink + ")" + " - " + description + " ([Demo](" + demo + ")," + " [Source Code](" + sourcecode + ")) " + "`" + license + "` `" + language + "`";
     } else { document.getElementById("formResult").innerHTML = "error!!"; }
-    document.getElementById("formResult").innerHTML = entryResult;
+    //document.getElementById("formResult").innerHTML = entryResult;
+    document.getElementById("formResult").value = entryResult;
 }
 function logEntry() {
     document.getElementById("formLog").innerHTML += entryResult + "</br>";
