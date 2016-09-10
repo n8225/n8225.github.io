@@ -191,19 +191,19 @@ function formChanged() {
     var sourcecode = document.getElementsByName("sourcecode")[0].value;
     var license = document.getElementsByName("license")[0].value;
     var language = document.getElementsByName("language")[0].value;
-    console.log("demo value: " + (demo == ""));
+    //console.log("demo value: " + (demo == ""));
     if (demo == "" && sourcecode == "") {
         entryResult = "* [" + name + "](" + sitelink + ")" + " - " + description + " `" + license + "` `" + language + "`";
     } else if (demo != "" && sourcecode == "") {
         entryResult = "* [" + name + "](" + sitelink + ")" + " - " + description + " ([Demo](" + demo + ")) " + "`" + license + "` `" + language + "`";
-    } else if (demo == "" && sourcecode == "") {
+    } else if (demo == "" && sourcecode !== "") {
         entryResult = "* [" + name + "](" + sitelink + ")" + " - " + description + " ([Source Code](" + sourcecode + ")) " + "`" + license + "` `" + language + "`";
     } else if (demo != "" && sourcecode != "") {
         entryResult = "* [" + name + "](" + sitelink + ")" + " - " + description + " ([Demo](" + demo + ")," + " [Source Code](" + sourcecode + ")) " + "`" + license + "` `" + language + "`";
     } else { document.getElementById("formResult").innerHTML = "error!!"; }
-    //document.getElementById("formResult").innerHTML = entryResult;
-    document.getElementById("formResult").value = entryResult;
-}
+    document.getElementById("formResult").innerHTML = entryResult;
+    //document.getElementById("formResult").value = entryResult;
+};
 function logEntry() {
     document.getElementById("formLog").innerHTML += entryResult + "</br>";
 }
