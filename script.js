@@ -13,8 +13,8 @@ var pnospatt = /\s{0,3}\*\s\[(.*?)\]\((.*?)\)\s\`(\⚠)\`\s\-\s(.{0,249}?\.\s)\(
 var namepatt = /\*\s\[(.*?)\]/; //Get name only
 var entryArray = [];
 var rawArray = [];
-var textarea;
-var content;
+//var textarea;
+//var content;
 var totalEntries;
 var totalFail = 0;
 var totalPass = 0;
@@ -27,27 +27,46 @@ function getText() {
     //document.getElementById("alert").innerHTML = "";
     textarea = document.getElementById("textarea").value;
     getContent(textarea);
-    linetoArray();
+    //linetoArray();
 };
 
+function getddddd() {
+    text = getSource();
+    console.log(text);
+    //getContent(getSource());
+}
+
 function getUrl() {
-    document.getElementById("textarea").value = "";
+    //textarea = document.getElementById("textarea").value;
+    //document.getElementById("textarea").value = "";
+    console.log(url.value);
+    console.log(this.responseText)
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.addEventListener("load", transferComplete);
+    //xmlhttp.addEventListener("load", transferComplete);
     url = document.getElementById("url").value;
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
+    //xmlhttp.onreadystatechange = function () {
+    xmlhttp.onreadystatechange = handler;    
+        console.log(handler);
+        //if (this.readyState == 4 && this.status == 200)
+        //{
             //document.getElementById("fail").value = this.responseText;
-            document.getElementById("textarea").value = this.responseText;
-        }
-    };
+            //document.getElementById("textarea").value = this.responseText;
+            console.log("ready");
+            //console.log(this.responseText);
+            //textarea = this.responseText;
+            //testvar = this.responseText;
+        //}
+    //}
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
-    function transferComplete(evt) {
-        console.log("Transfer Complete");
-        getText();
-    }
-}
+    //function transferComplete(evt) {
+      //  console.log("Transfer Complete");
+        //console.log("evt: " + xmlhttp.responseText);
+        //console.log(textarea);
+        //getText();
+       // getContent(xmlhttp.responseText);
+   // }
+};
 
 function getContent(text) {
     if (/^\<\!\-\-\sBEGIN/mg.test(text) == true) {
@@ -64,22 +83,24 @@ function getContent(text) {
         content = content.replace(/\r\n\r\n/g, "\r\n")
     }
     //document.getElementById("result").value = content;
+    linetoArray(content);
 }
 
 function filterContent(line) { 
-    var linepatt = /^\s{1,3}\*\s\[/;
+    var linepatt = /^\s{0,3}\*\s\[/;
     return linepatt.test(line);
 }
 
-function linetoArray() {
+function linetoArray(content) {
     dirtyArray = content.split(/\r?\n/);
     rawArray = dirtyArray.filter(filterContent);
     //console.log(rawArray);
     totalEntries = rawArray.length;
-    var alertid = document.getElementById("alert");
-    var failcid = document.getElementById("failcont");
-    failcid.setAttribute("class", "alert alert-danger");
-    alertid.setAttribute("class", "alert alert-warning");
+    //var alertid = document.getElementById("alert");
+    //var failcid = document.getElementById("failcont");
+    //var passid =document.getElementById("pass");
+    //failcid.setAttribute("class", "alert alert-danger");
+    //alertid.setAttribute("class", "alert alert-warning");
 
 
 
@@ -91,7 +112,6 @@ function linetoArray() {
         var entry = namepatt.exec(rawArray[i]);
         //console.log(entry);
         //console.log(entry[1]);
-        
         entryArray[i].entryName = entry[1];
         entryArray[i].error = "";
         findPattern(rawArray[i], i);
@@ -100,95 +120,119 @@ function linetoArray() {
             totalPass += 1;
         } else {
             //document.getElementById("fail").innerHTML += entryArray[i].entryName + ": " + entryArray[i].error + "<br\>";
-            textnode = document.createTextNode(entryArray[i].entryName + ": " + entryArray[i].error);
-            node = document.createElement("LI");
-            node.appendChild(textnode);
-            document.getElementById("fail").appendChild(node);
+            //textnode = document.createTextNode(entryArray[i].entryName + ": " + entryArray[i].error);
+            //node = document.createElement("LI");
+            //node.appendChild(textnode);
+            message(entryArray[i].entryName + ": " + entryArray[i].error, "alert alert-danger", rawArray[i]);
+            //document.getElementById("fail").appendChild(node);
             totalFail += 1;
         }
     }
     //document.getElementById("alert").innerHTML += " Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.";
     if (totalFail > 0) {
-        document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode("Error(s) Found, check your syntax!")));
-        document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode(" Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.")));    
+        //document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode("Error(s) Found, check your syntax!"))).className("alert alert-danger");
+        //document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode(" Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed."))).className("alert alert-warning");    
+        message("Error(s) Found, check your syntax!", "alert alert-warning");
+        message("Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.", "alert alert-warning");   
     } else {
-        failcid.setAttribute("class", "alert alert-success");
-        document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode("All entries passed!")));
-        document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode(" Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.")));
+        //document.getElementById("alert").appendChild(document.createElement("li").appendChild(document.createTextNode("All entries passed!")));
+        //var list = document.getElementById("alert");
+        //var text = "All entries passed!";
+        //var entry = document.createElement("li");
+        //entry.appendChild(document.createTextNode(text));
+        //entry.className = "alert alert-success";
+        //list.appendChild(entry);
+        console.log("passed, wtf??");
+        message("All entries passed!", "alert alert-success");
+        message("Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.", "alert alert-success");
+        //document.getElementById("alert").appendChild(document.createElement("li").appendChild(document.createTextNode(text)));
+        //document.getElementById("alert").appendChild(document.createElement("li").appendChild(document.createTextNode(" Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed."))).className = "alert alert-success");
     }
 };
 
-function findPattern(textarea, i) {
-    if (nodnospatt.test(textarea) == true) {
-        res = nodnospatt.exec(textarea);
+function message (text, status, text2) {
+    var list = document.getElementById("alert");
+    var entry = document.createElement("li");
+    entry.className = status
+    entry.appendChild(document.createTextNode(text));
+    if (typeof text2 != 'undefined'){
+    entry.appendChild(document.createElement("br"));
+    entry.appendChild(document.createTextNode(text2));
+    }
+    list.appendChild(entry);
+}
+
+function findPattern(text, i) {
+    if (nodnospatt.test(text) == true) {
+        res = nodnospatt.exec(text);
         entryArray[i].pass = true;
         entryArray[i].warnings += "No Demo, No Source";
-    } else if (slpatt.test(textarea) == true) {
-        res = slpatt.exec(textarea);
+    } else if (slpatt.test(text) == true) {
+        res = slpatt.exec(text);
         entryArray[i].pass = true;
-    } else if (nodpatt.test(textarea) == true) {
-        res = nodpatt.exec(textarea);
+    } else if (nodpatt.test(text) == true) {
+        res = nodpatt.exec(text);
         entryArray[i].pass = true;
         entryArray[i].warnings += "No Demo";
-    } else if (nospatt.test(textarea) == true) {
-        res = nospatt.exec(textarea);
+    } else if (nospatt.test(text) == true) {
+        res = nospatt.exec(text);
         entryArray[i].pass = true;
         entryArray[i].warnings += "No Source";
-    } else if (pnodnospatt.test(textarea) == true) {
-        res = pnodnospatt.exec(textarea);
+    } else if (pnodnospatt.test(text) == true) {
+        res = pnodnospatt.exec(text);
         entryArray[i].pass = true;
         entryArray[i].warnings += "No Demo, No Source";
-    } else if (pslpatt.test(textarea) == true) {
-        res = pslpatt.exec(textarea);
+    } else if (pslpatt.test(text) == true) {
+        res = pslpatt.exec(text);
         entryArray[i].pass = true;
-    } else if (pnodpatt.test(textarea) == true) {
-        res = pnodpatt.exec(textarea);
+    } else if (pnodpatt.test(text) == true) {
+        res = pnodpatt.exec(text);
         entryArray[i].pass = true;
         entryArray[i].warnings += "No Demo";
-    } else if (pnospatt.test(textarea) == true) {
-        res = pnospatt.exec(textarea);
+    } else if (pnospatt.test(text) == true) {
+        res = pnospatt.exec(text);
         entryArray[i].pass = true;
         entryArray[i].warnings += "No Source";
     } else {
         //document.getElementById("alert").innerHTML = "Error(s) Found, check your syntax!";
         entryArray[i].pass = false;
-        moreTests(textarea, i);
+        moreTests(text, i);
     }
 };
 
-function moreTests(textarea, i) {
-    if (/^\s{0,3}\*\s\[.*?\]\(.*?\)\s/.test(textarea) == false) {
+function moreTests(text, i) {
+    if (/^\s{0,3}\*\s\[.*?\]\(.*?\)\s/.test(text) == false) {
         entryArray[i].error += "Error in '[Name](http://homepage/)', ";
     }
-    if (/^\s{2,3}\*\s\[.*?\]\(.*?\)\s\-\s/.test(textarea) == false) {
+    if (/^\s{2,3}\*\s\[.*?\]\(.*?\)\s\-\s/.test(text) == false) {
         entryArray[i].error += "Error in '[Name](http://homepage/) - ', ";
     }
-    if (/\`.*?\`\s\`.*?\`$/.test(textarea) == false) {
+    if (/\`.*?\`\s\`.*?\`$/.test(text) == false) {
         entryArray[i].error += "Error in '`License` `Language`', ";
     }
-    if (/\`.*?\`\s\`.*?\`$/.test(textarea) == true && /\s\`.*?\`\s\`.*?\`$/.test(textarea) == false) {
+    if (/\`.*?\`\s\`.*?\`$/.test(text) == true && /\s\`.*?\`\s\`.*?\`$/.test(text) == false) {
         entryArray[i].error += "Missing Space before `License`, ";
     }
-    if (/\s\(\[.*\)\)/.test(textarea) == true && /\.\s\(\[.*\)\)/.test(textarea) == false) {
+    if (/\s\(\[.*\)\)/.test(text) == true && /\.\s\(\[.*\)\)/.test(text) == false) {
         entryArray[i].error += "Missing Full Stop, ";
     }
-    if (/\[demo/i.test(textarea) == true) {
-        if (/\(\[Demo\]\(.*?\)\)/.test(textarea) == false) {
+    if (/\[demo/i.test(text) == true) {
+        if (/\(\[Demo\]\(.*?\)\)/.test(text) == false) {
             entryArray[i].error += "Error in '([Demo](http://url.to/demo)', ";
         }
     } 
-    if (/\[source/i.test(textarea) == true) {
-        if (/\(\[Source Code\]\(.*?\)\)/.test(textarea) == false) {
+    if (/\[source/i.test(text) == true) {
+        if (/\(\[Source Code\]\(.*?\)\)/.test(text) == false) {
             entryArray[i].error += "Error in '([Source Code](http://url.to/demo)', ";
         }
     }
-    if (/\.\s\`.*?\`\s\`.*?\`$/.test(textarea) == false && /\[source code/i.test(textarea) == false && /\[demo/i.test(textarea) == false) {
+    if (/\.\s\`.*?\`\s\`.*?\`$/.test(text) == false && /\[source code/i.test(text) == false && /\[demo/i.test(text) == false) {
             entryArray[i].error += "Missing Full Stop, ";
     }
-    if (/^\s{0,3}\*\s.*\s{2}/.test(textarea) == true || /\*.*\s{2}.*\`.*\`$/.test(textarea) == true) {
+    if (/^\s{0,3}\*\s.*\s{2}/.test(text) == true || /\*.*\s{2}.*\`.*\`$/.test(text) == true) {
         entryArray[i].error += "Double Space found in syntax";
     }
-    if (/\-.*{251,]\.\s\(/.test(textarea) == true || /\-.*{251,]\.\s\`/.test(textarea) == true) {
+    if (/\-.*{251,]\.\s\(/.test(text) == true || /\-.*{251,]\.\s\`/.test(text) == true) {
         entryArray[i].error += "Description exceeds 250 charachters";
     }
 }
@@ -218,6 +262,6 @@ function logEntry() {
     document.getElementById("formLog").innerHTML += entryResult + "</br>";
 }
 
-function resetForm(){
-    document.getElementById("eform").reset();
-}
+//function resetForm(){
+//    document.getElementById("eform").reset();
+//}
