@@ -4,7 +4,8 @@
     <title></title>
     <meta charset="utf-8" />
     <script src="script.js"></script>
-    <link href="style.css" rel="stylesheet" />
+    <!--<link href="style.css" rel="stylesheet" />-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -14,25 +15,22 @@
                 <h1>Awesome-SelfHosted Helper</h1>
             </div>
             <div class="nav">
-                <ul><li><a href="index.html">Entry Creator</a></li><li><a href="validate.html">Validater</a></li></ul>
+                <ul class="nav nav-pills"><li role="presentation" class="active"><a href="index.html">Entry Creator</a></li><li role="presentation"><a href="validate.html">Validator</a></li></ul>
             </div>
         </header>
-        <div class="content-wrap">
-            <div>
-                <form class="main">
 
-                    <div class="form-group">
-                        <input type="text" name="name" id="name" onkeyup="formChanged()" onchange="formChanged()" required />
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="input-label">Name</label>
+        <div class="jumbotron">
+            <div class="container">
+                <form class="row">
+
+                    <div class="form-group col-lg-5">
+                        <label class="sr-only" for="name">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" onkeyup="formChanged()" onchange="formChanged()" placeholder="Name" required/>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" name="sitelink" id="site" onkeyup="formChanged()" onchange="formChanged()" required />
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="input-label">Link</label>
+                    <div class="form-group col-lg-7">
+                        <input type="text" class="form-control" name="sitelink" id="site" onkeyup="formChanged()" onchange="formChanged()" placeholder="Site Link" required />
+                        <label class="sr-only" for="site">Link</label>
                     </div>
 
                     <!--<div class="checkbox">
@@ -42,47 +40,38 @@
                             Non-Free Dependency
                         </label>
                     </div>-->
-
-                    <div class="form-group">
-                        <input type="text" name="description" id="desc" maxlength="250" pattern=".*\." onkeyup="formChanged()" onchange="formChanged()" required />
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="input-label">Description</label>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" name="demo" id="demo" onkeyup="formChanged()" onchange="formChanged()" required />
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="input-label">Demo</label>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" name="sourcecode" id="source" onkeyup="formChanged()" onchange="formChanged()" required />
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="input-label">Source Code</label>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" name="license" id="license" onkeyup="formChanged()" onchange="formChanged()" required />
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="input-label">License</label>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" name="language" id="language" onkeyup="formChanged()" onchange="formChanged()" required />
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="input-label">Language</label>
-                    </div>
-
-                    <button type="submit" class="button" onclick="logEntry()">
-                        <span>Log Entry</span>
-                    </button>
                 </form>
-                </div>
+                <form class="row">
+                    <div class="form-group col-lg-12">
+                        <input type="text" class="form-control col-lg-4" name="description" id="desc" maxlength="250" pattern=".*\." onkeyup="formChanged()" onchange="formChanged()" placeholder="Description" required />
+                        <label class="sr-only" for="desc">Description</label>
+                    </div>
+                </form>
+                <form class="row">
+                    <div class="form-group col-lg-4">
+                        <input type="text" class="form-control" name="demo" id="demo" onkeyup="formChanged()" onchange="formChanged()" placeholder="Demo Link" />
+                        <label class="sr-only" for="demo">Demo</label>
+                    </div>
+
+                    <div class="form-group col-lg-4">
+                        <input type="text" class="form-control" name="sourcecode" id="source" onkeyup="formChanged()" onchange="formChanged()" placeholder="Source Code Link" />
+                        <label class="sr-only" for="source">Source Code</label>
+                    </div>
+
+                    <div class="form-group col-lg-2">
+                        <input type="text" class="form-control" name="license" id="license" onkeyup="formChanged()" onchange="formChanged()" placeholder="License" required />
+                        <label class="sr-only" for="license">License</label>
+                    </div>
+
+                    <div class="form-group col-lg-2">
+                        <input type="text" class="form-control" name="language" id="language" onkeyup="formChanged()" onchange="formChanged()" placeholder="Language" required />
+                        <label class="sr-only" for="language">Language</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" onclick="logEntry()">Log Entry</button>
+                </form>
+                </div></div>
+                <div class="container">
             <div class="result">
                 <h2>Your Entry will show up here.</h2>
                 <p id="formResult"></p>
@@ -90,6 +79,8 @@
             </div>
         </div>
     </div>
-
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
 </body>
 </html>
