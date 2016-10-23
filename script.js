@@ -33,6 +33,7 @@ function getText() {
 function getUrl() {
     document.getElementById("textarea").value = "";
     var xmlhttp = new XMLHttpRequest();
+    xmlhttp.addEventListener("load", transferComplete);
     url = document.getElementById("url").value;
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -42,12 +43,15 @@ function getUrl() {
     };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
-    getText();
+    function transferComplete(evt) {
+        console.log("Transfer Complete");
+        getText();
+    }
 }
 
 function getContent(text) {
     if (/^\<\!\-\-\sBEGIN/mg.test(text) == true) {
-        console.log("if");
+        //console.log("if");
         cutOne = text.split("<!-- BEGIN SOFTWARE LIST -->");
         cutTwo = cutOne[1].split("<!-- END SOFTWARE LIST -->");
         //document.getElementById("fail").value = cutTwo[0];
@@ -62,27 +66,32 @@ function getContent(text) {
     //document.getElementById("result").value = content;
 }
 
-
+function filterContent(line) { 
+    var linepatt = /^\s{1,3}\*\s\[/;
+    return linepatt.test(line);
+}
 
 function linetoArray() {
     dirtyArray = content.split(/\r?\n/);
-    rawArray = dirtyArray.filter(function (v) { return v !== '' });
+    rawArray = dirtyArray.filter(filterContent);
+    //console.log(rawArray);
     totalEntries = rawArray.length;
     var alertid = document.getElementById("alert");
     var failcid = document.getElementById("failcont");
-    var att = document.createAttribute("class");
-    var att2 = document.createAttribute("class");
-    att.value = "content-wrap2";
-    att2.value = "content-wrap2";
-    failcid.setAttributeNode(att);
-    alertid.setAttributeNode(att2);
+    failcid.setAttribute("class", "content-wrap2");
+    alertid.setAttribute("class", "content-wrap");
+
 
 
     for (var i = 0, len = rawArray.length; i < len; i++) {
         //document.getElementById("result").value += rawArray[i] + "\n";
         entryArray[i] = new Object;
         entryArray[i].raw = rawArray[i];
-        entry = namepatt.exec(rawArray[i]);
+        //console.log(entryArray[i].raw);
+        var entry = namepatt.exec(rawArray[i]);
+        //console.log(entry);
+        //console.log(entry[1]);
+        
         entryArray[i].entryName = entry[1];
         entryArray[i].error = "";
         findPattern(rawArray[i], i);
