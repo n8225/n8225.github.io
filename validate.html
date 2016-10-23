@@ -4,7 +4,7 @@
     <title></title>
     <meta charset="utf-8" />
     <script src="script.js"></script>
-    <link href="style.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -14,29 +14,20 @@
                 <h1>Awesome-SelfHosted Helper</h1>
             </div>
             <div class="nav">
-                <ul><li><a href="index.html">Entry Creator</a></li><li><a href="validate.html">Validater</a></li></ul>
+                <ul class="nav nav-pills"><li role="presentation"><a href="index.html">Entry Creator</a></li><li role="presentation" class="active"><a href="validate.html">Validater</a></li></ul>
             </div>
         </header>
-        <div class="content-wrap2">
-            <div class="form-group form2">
-                <textarea id="textarea" required="required"></textarea>
-                <label for="input" class="input-label"></label>
+        <div class="jumbotron">
+            <div class="container">
+                <textarea id="textarea" class="form-control" required rows="4" placeholder="Paste the whole Awesome-Selfhosted README.md here or just a single entry and hit ok."></textarea>
+                <label for="textarea" class="sr-only">Content to be validated.</label>
+                <button type="submit" class="btn btn-primary" onclick="getText()">Submit</button>
+
+                <p>or enter the url to the README.md</p>
+                <textarea id="url" class="form-control" rows="1" required>https://raw.githubusercontent.com/Kickball/awesome-selfhosted/master/README.md</textarea>
+                <label for="url" class="sr-only">URL to be validated.</label>
                 <i class="bar"></i>
-                <p>Paste the whole Awesome-Selfhosted README.md here or just a single entry and hit ok.</p>
-            </div>
-            <div class="button-container">
-                <button type="submit" class="button" onclick="getText()"><span>Submit</span></button>
-            </div>
-        </div>
-        <div class="content-wrap2">
-            <div class="form-group form2">
-                <textarea id="url" required="required">https://raw.githubusercontent.com/Kickball/awesome-selfhosted/master/README.md</textarea>
-                <label for="input" class="input-label"></label>
-                <i class="bar"></i>
-                <p>or enter the url to the README.md.</p>
-            </div>
-            <div class="button-container">
-                <button type="submit" class="button" onclick="getUrl()"><span>Submit</span></button>
+                <button type="submit" class="btn btn-primary" onclick="getUrl()">Submit</button>
             </div>
         </div>
             <div id="alert">
@@ -45,6 +36,7 @@
         <div id="failcont">
             <ul id="fail"></ul>
         </div>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
 </body>
 </html>
