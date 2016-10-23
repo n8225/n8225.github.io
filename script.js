@@ -78,8 +78,8 @@ function linetoArray() {
     totalEntries = rawArray.length;
     var alertid = document.getElementById("alert");
     var failcid = document.getElementById("failcont");
-    failcid.setAttribute("class", "content-wrap2");
-    alertid.setAttribute("class", "content-wrap");
+    failcid.setAttribute("class", "alert alert-danger");
+    alertid.setAttribute("class", "alert alert-warning");
 
 
 
@@ -110,11 +110,12 @@ function linetoArray() {
     //document.getElementById("alert").innerHTML += " Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.";
     if (totalFail > 0) {
         document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode("Error(s) Found, check your syntax!")));
+        document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode(" Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.")));    
     } else {
+        failcid.setAttribute("class", "alert alert-success");
         document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode("All entries passed!")));
+        document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode(" Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.")));
     }
-    document.getElementById("alert").appendChild(document.createElement("LI").appendChild(document.createTextNode(" Of " + totalEntries + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.")));
-
 };
 
 function findPattern(textarea, i) {
@@ -215,4 +216,8 @@ function formChanged() {
 };
 function logEntry() {
     document.getElementById("formLog").innerHTML += entryResult + "</br>";
+}
+
+function resetForm(){
+    document.getElementById("eform").reset();
 }

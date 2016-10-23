@@ -19,22 +19,27 @@
         </header>
         <div class="jumbotron">
             <div class="container">
-                <textarea id="textarea" class="form-control" required rows="4" placeholder="Paste the whole Awesome-Selfhosted README.md here or just a single entry and hit ok."></textarea>
-                <label for="textarea" class="sr-only">Content to be validated.</label>
-                <button type="submit" class="btn btn-primary" onclick="getText()">Submit</button>
+                <form id="eform">
+                    <textarea id="textarea" class="form-control" required rows="4" placeholder="Paste the whole Awesome-Selfhosted README.md here or just a single entry and hit ok."></textarea>
+                    <label for="textarea" class="sr-only">Content to be validated.</label>
+                    <button type="submit" class="btn btn-primary" onclick="getText()">Submit</button>
 
-                <p>or enter the url to the README.md</p>
-                <textarea id="url" class="form-control" rows="1" required>https://raw.githubusercontent.com/Kickball/awesome-selfhosted/master/README.md</textarea>
-                <label for="url" class="sr-only">URL to be validated.</label>
-                <i class="bar"></i>
-                <button type="submit" class="btn btn-primary" onclick="getUrl()">Submit</button>
+                    <p>or enter the url to the README.md</p>
+                    <textarea id="url" class="form-control" rows="1" required>https://raw.githubusercontent.com/Kickball/awesome-selfhosted/master/README.md</textarea>
+                    <label for="url" class="sr-only">URL to be validated.</label>
+                    <i class="bar"></i>
+                    <button type="submit" class="btn btn-primary" onclick="getUrl()">Submit</button>
+                    <button type="submit" class="btn btn-danger" onclick="resetForm()">Reset</button>
+                </form>
             </div>
         </div>
+        <div class="container">
             <div id="alert">
 
             </div>
         <div id="failcont">
             <ul id="fail"></ul>
+        </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  

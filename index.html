@@ -21,7 +21,7 @@
 
         <div class="jumbotron">
             <div class="container">
-                <form class="row">
+                <form id="eform" class="row">
 
                     <div class="form-group col-lg-5">
                         <label class="sr-only" for="name">Name</label>
@@ -41,13 +41,13 @@
                         </label>
                     </div>-->
                 </form>
-                <form class="row">
+                <form  id="eform" class="row">
                     <div class="form-group col-lg-12">
                         <input type="text" class="form-control col-lg-4" name="description" id="desc" maxlength="250" pattern=".*\." onkeyup="formChanged()" onchange="formChanged()" placeholder="Description" required />
                         <label class="sr-only" for="desc">Description</label>
                     </div>
                 </form>
-                <form class="row">
+                <form  id="eform" class="row">
                     <div class="form-group col-lg-4">
                         <input type="text" class="form-control" name="demo" id="demo" onkeyup="formChanged()" onchange="formChanged()" placeholder="Demo Link" />
                         <label class="sr-only" for="demo">Demo</label>
@@ -69,6 +69,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary" onclick="logEntry()">Log Entry</button>
+                    <button type="submit" class="btn btn-danger" onclick="resetForm()">Reset</button>
                 </form>
                 </div></div>
                 <div class="container">
