@@ -3,7 +3,7 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
     <!--<link href="style.css" rel="stylesheet" />-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -41,13 +41,13 @@
                         </label>
                     </div>-->
                 </form>
-                <form  id="eform" class="row">
+                <form  id="eform2" class="row">
                     <div class="form-group col-lg-12">
                         <input type="text" class="form-control col-lg-4" name="description" id="desc" maxlength="250" pattern=".*\." onkeyup="formChanged()" onchange="formChanged()" placeholder="Description" required />
                         <label class="sr-only" for="desc">Description</label>
                     </div>
                 </form>
-                <form  id="eform" class="row">
+                <form  id="eform3" class="row">
                     <div class="form-group col-lg-4">
                         <input type="text" class="form-control" name="demo" id="demo" onkeyup="formChanged()" onchange="formChanged()" placeholder="Demo Link" />
                         <label class="sr-only" for="demo">Demo</label>
@@ -68,15 +68,16 @@
                         <label class="sr-only" for="language">Language</label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" onclick="logEntry()">Log Entry</button>
-                    <button type="submit" class="btn btn-danger" onclick="resetForm()">Reset</button>
+                    <button type="button" class="btn btn-primary" onclick="logEntry()">Log Entry</button>
+                    <button type="button" class="btn btn-danger" onclick="resetForm()">Reset</button>
                 </form>
                 </div></div>
                 <div class="container">
             <div class="result">
                 <h2>Your Entry will show up here.</h2>
-                <p id="formResult"></p>
-                <p id="formLog"></p>
+                <ul id="formLog" class="list-unstyled">
+                    <li id="formResult"></li>
+                </ul>
             </div>
         </div>
     </div>
