@@ -3,6 +3,18 @@ var totalFail = 0;
 var totalPass = 0;
 var entryArray = [];
 
+function testEntry(){
+    var list = document.getElementById("alert");
+    var lines = document.getElementById('entryText').value;
+    totalFail = 0;
+    totalPass = 0;
+    while (list.hasChildNodes()) {
+        list.removeChild(list.firstChild);
+    }
+    //console.log(lines);
+    entryErrorCheck(lines);
+}
+
 function getUrl(formUrl) {
     var list = document.getElementById("alert");
     while (list.hasChildNodes()) {
@@ -40,10 +52,16 @@ function entryFilter(md) {
 }
 
 function split(text){
-    cutOne = text.split("<!-- BEGIN SOFTWARE LIST -->");
-    cutTwo = cutOne[1].split("<!-- END SOFTWARE LIST -->");
-    cutThree = cutTwo[0].replace(/^\#.*$|^\_.*$|^See.*$|^Some.*$|^\*.*\*$|^\s\*.*\*$|^CMS.*$|^\*\*\[.*$/mg, "");
-    return cutThree.split(/\r?\n/);
+    if (/^\<\!\-\-\sBEGIN/mg.test(text) == true) {
+        cutOne = text.split("<!-- BEGIN SOFTWARE LIST -->");
+        cutTwo = cutOne[1].split("<!-- END SOFTWARE LIST -->");
+        cutThree = cutTwo[0].replace(/^\#.*$|^\_.*$|^See.*$|^Some.*$|^\*.*\*$|^\s\*.*\*$|^CMS.*$|^\*\*\[.*$/mg, "");
+        return cutThree.split(/\r?\n/);
+    }
+    else {
+        //console.log(text);
+        return text.split(/\r?\n/);
+    }
 }
 
 function parseMD(md) {
