@@ -22,13 +22,14 @@
                     <!--<textarea id="textarea" class="form-control" required rows="4" placeholder="Paste the whole Awesome-Selfhosted README.md here or just a single entry and hit ok."></textarea>
                     <label for="textarea" class="sr-only">Content to be validated.</label>
                     <button type="submit" class="btn btn-primary" onclick="getText()">Submit</button>-->
-
+                    <p>Test the Awesome-SelfHosted Repo</p>
+                    <input type="url" id="ash" class="form-control" rows="1" value="https://raw.githubusercontent.com/Kickball/awesome-selfhosted/master/README.md" readOnly required></input>
+                    <button type="button" class="btn btn-primary" onclick="getUrl('ash')">Submit</button>
                     <p>Enter the url to the README.md</p>
-                    <textarea id="url" class="form-control" rows="1" required>https://raw.githubusercontent.com/Kickball/awesome-selfhosted/master/README.md</textarea>
+                    <input type="url" id="url" class="form-control" rows="1" required></input>
                     <!--<textarea id="url" class="form-control" rows="1" required>https://www.google.com</textarea>-->
                     <label for="url" class="sr-only">URL to be validated.</label>
-                    <i class="bar"></i>
-                    <button type="button" class="btn btn-primary" onclick="getUrl()">Submit</button>
+                    <button type="button" class="btn btn-primary" onclick="getUrl('url')">Submit</button>
                     <!--<button type="submit" class="btn btn-danger" onclick="resetForm()">Reset</button>-->
                 </form>
             </div>

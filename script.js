@@ -3,10 +3,14 @@ var totalFail = 0;
 var totalPass = 0;
 var entryArray = [];
 
-function getUrl() {
+function getUrl(formUrl) {
+    var list = document.getElementById("alert");
+    while (list.hasChildNodes()) {
+        list.removeChild(list.firstChild);
+    }
     totalFail = 0;
     totalPass = 0;
-    url = document.getElementById("url").value;
+    url = document.getElementById(formUrl).value;
     getSource(url).then(function(response) {
         console.log("Success");
         entryErrorCheck(response);
@@ -58,7 +62,7 @@ function entryErrorCheck(md) {
         entryArray[i].raw = entries[i];
         //console.log(entries[i]);
         //console.log(entryArray[i].raw);
-        entryArray[i].name = namepatt.exec(entries[i]);
+        entryArray[i].name = namepatt.exec(entries[i])[1];
         //console.log('name' + entryArray[i].name);
         //entryArray[i].error = "";
         entryArray[i].pass = findPattern(entryArray[i].raw, i);
@@ -78,7 +82,7 @@ function entryErrorCheck(md) {
         message("Of " + entries.length + " total entries, " + totalPass + " Passed, and " + totalFail + " Failed.", "alert alert-success");
     }
     //console.log(entries[i])
-    console.log(totalPass + "|" + totalFail);
+    //console.log(totalPass + "|" + totalFail);
 };
 
 function message (text, status) {
