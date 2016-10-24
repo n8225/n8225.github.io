@@ -3,7 +3,6 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
-    <script src="script.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -20,28 +19,25 @@
         <div class="jumbotron">
             <div class="container">
                 <form id="eform">
-                    <textarea id="textarea" class="form-control" required rows="4" placeholder="Paste the whole Awesome-Selfhosted README.md here or just a single entry and hit ok."></textarea>
+                    <!--<textarea id="textarea" class="form-control" required rows="4" placeholder="Paste the whole Awesome-Selfhosted README.md here or just a single entry and hit ok."></textarea>
                     <label for="textarea" class="sr-only">Content to be validated.</label>
-                    <button type="submit" class="btn btn-primary" onclick="getText()">Submit</button>
+                    <button type="submit" class="btn btn-primary" onclick="getText()">Submit</button>-->
 
-                    <p>or enter the url to the README.md</p>
+                    <p>Enter the url to the README.md</p>
                     <textarea id="url" class="form-control" rows="1" required>https://raw.githubusercontent.com/Kickball/awesome-selfhosted/master/README.md</textarea>
+                    <!--<textarea id="url" class="form-control" rows="1" required>https://www.google.com</textarea>-->
                     <label for="url" class="sr-only">URL to be validated.</label>
                     <i class="bar"></i>
-                    <button type="submit" class="btn btn-primary" onclick="getUrl()">Submit</button>
-                    <button type="submit" class="btn btn-danger" onclick="resetForm()">Reset</button>
+                    <button type="button" class="btn btn-primary" onclick="getUrl()">Submit</button>
+                    <!--<button type="submit" class="btn btn-danger" onclick="resetForm()">Reset</button>-->
                 </form>
             </div>
         </div>
         <div class="container">
-            <div id="alert">
-
-            </div>
-        <div id="failcont">
-            <ul id="fail"></ul>
-        </div>
+            <ul id="alert" class="list-unstyled"></ul>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="script.js"></script>
 </body>
 </html>
