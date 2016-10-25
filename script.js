@@ -47,7 +47,7 @@ function getSource(url) { //https://developers.google.com/web/fundamentals/getti
 }
 
 function entryFilter(md) {
-    var linepatt = /^\s{0,3}\*\s\[/;
+    var linepatt = /^\s{0,4}\*\s\[.*\`/;
     return linepatt.test(md);
 }
 
