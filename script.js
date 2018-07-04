@@ -47,7 +47,7 @@ function getSource(url) { //https://developers.google.com/web/fundamentals/getti
 }
 
 function entryFilter(md) {
-    var linepatt = /^\s{0,4}\*\s\[.*\`/;
+    var linepatt = /^\s{0,2}-\s\[.*`/;
     return linepatt.test(md);
 }
 
@@ -73,7 +73,7 @@ function parseMD(md) {
 }
 
 function entryErrorCheck(md) {
-    var namepatt = /\*\s\[(.*?)\]/;
+    var namepatt = /^\s{0,2}-\s\[(.*?)\]/;
     var entries = parseMD(md);
     for (var i = 0, len = entries.length; i < len; i++) {
         entryArray[i] = new Object;
@@ -112,14 +112,14 @@ function message (text, status) {
 }
 
 function findPattern(text, i) {
-    var nodnospatt = /\s{0,3}\*\s\[(.*?)\]\((.*?)\)\s\-\s(.{0,249}?\.\s)\`(.*?)\`\s\`(.*?)\`/; //Regex for entries with no demo and no source code
-    var slpatt = /\s{0,3}\*\s\[(.*?)\]\((.*?)\)\s\-\s(.{0,249}?\.\s)\(\[Demo\b\]\((.*?)\)\,\s\[Source Code\b\]\((.*?)\)\)\s\`(.*?)\`\s\`(.*?)\`/; //Regex for entries with demo and source code
-    var nodpatt = /\s{0,3}\*\s\[(.*?)\]\((.*?)\)\s\-\s(.{0,249}?\.\s)\(\[Source Code\]\((.*?)\)\)\s\`(.*?)\`\s\`(.*?)\`/; //Regex for entries with no demo
-    var nospatt = /\s{0,3}\*\s\[(.*?)\]\((.*?)\)\s\-\s(.{0,249}?\.\s)\(\[Demo\]\((.*?)\)\)\s\`(.*?)\`\s\`(.*?)\`/; //Regex for entries with no source code
-    var pnodnospatt = /\s{0,3}\*\s\[(.*?)\]\((.*?)\)\s\`(\⚠)\`\s\-\s(.{0,249}?\.\s)\`(.*?)\`\s\`(.*?)\`/; //Regex for entries with proprietary with no demo and no source code
-    var pslpatt = /\s{0,3}\*\s\[(.*?)\]\((.*?)\)\s\`(\⚠)\`\s\-\s(.{0,249}?\.\s)\(\[Demo\b\]\((.*?)\)\,\s\[Source Code\b\]\((.*?)\)\)\s\`(.*?)\`\s\`(.*?)\`/; //Regex for entries with proprietary with demo and source code
-    var pnodpatt = /\s{0,3}\*\s\[(.*?)\]\((.*?)\)\s\`(\⚠)\`\s\-\s(.{0,249}?\.\s)\(\[Source Code\]\((.*?)\)\)\s\`(.*?)\`\s\`(.*?)\`/; //Regex for entries with proprietary with no demo
-    var pnospatt = /\s{0,3}\*\s\[(.*?)\]\((.*?)\)\s\`(\⚠)\`\s\-\s(.{0,249}?\.\s)\(\[Demo\]\((.*?)\)\)\s\`(.*?)\`\s\`(.*?)\`/; //Regex for entries with proprietary with no source code
+    const nodnospatt = /^-\s{0,2}\s\[.*?\]\(.*?\) - .{0,249}?\. `.*?` `.*?`/; // Regex for entries with no demo and no source code
+    const slpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) - .{0,249}?\. \(\[Demo\b\]\(.*?\), \[Source Code\b\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with demo and source code
+    const nodpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) - .{0,249}?\. \(\[Source Code\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with no demo
+    const nospatt = /^\s{0,2}-\s\[.*?\]\(.*?\) - .{0,249}?\. \(\[Demo\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with no source code
+    const pnodnospatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. `.*?` `.*?`/; // Regex for entries with proprietary with no demo and no source code
+    const pslpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. \(\[Demo\b\]\(.*?\), \[Source Code\b\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with proprietary with demo and source code
+    const pnodpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. \(\[Source Code\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with proprietary with no demo
+    const pnospatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. \(\[Demo\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with proprietary with no source code
     if (nodnospatt.test(text) == true) {
         return true;
     } else if (slpatt.test(text) == true) {

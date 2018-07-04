@@ -9,19 +9,18 @@ function formChanged() {
     var language = document.getElementsByName("language")[0].value;
     //console.log("demo value: " + (demo == ""));
     if (demo == "" && sourcecode == "") {
-        entryResult = "* [" + name + "](" + sitelink + ")" + " - " + description + " `" + license + "` `" + language + "`";
+        entryResult = "- [" + name + "](" + sitelink + ")" + " - " + description + " `" + license + "` `" + language + "`";
     } else if (demo != "" && sourcecode == "") {
-        entryResult = "* [" + name + "](" + sitelink + ")" + " - " + description + " ([Demo](" + demo + ")) " + "`" + license + "` `" + language + "`";
+        entryResult = "- [" + name + "](" + sitelink + ")" + " - " + description + " ([Demo](" + demo + ")) " + "`" + license + "` `" + language + "`";
     } else if (demo == "" && sourcecode !== "") {
-        entryResult = "* [" + name + "](" + sitelink + ")" + " - " + description + " ([Source Code](" + sourcecode + ")) " + "`" + license + "` `" + language + "`";
+        entryResult = "- [" + name + "](" + sitelink + ")" + " - " + description + " ([Source Code](" + sourcecode + ")) " + "`" + license + "` `" + language + "`";
     } else if (demo != "" && sourcecode != "") {
-        entryResult = "* [" + name + "](" + sitelink + ")" + " - " + description + " ([Demo](" + demo + ")," + " [Source Code](" + sourcecode + ")) " + "`" + license + "` `" + language + "`";
+        entryResult = "- [" + name + "](" + sitelink + ")" + " - " + description + " ([Demo](" + demo + ")," + " [Source Code](" + sourcecode + ")) " + "`" + license + "` `" + language + "`";
     } else { document.getElementById("formResult").innerHTML = "error!!"; }
     document.getElementById("formResult").className = "alert alert-success";
     document.getElementById("formResult").innerHTML = entryResult;
     //document.getElementById("formResult").value = entryResult;
 };
-
 
 function logEntry () {
     var list = document.getElementById("formLog");
