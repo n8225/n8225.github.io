@@ -116,10 +116,19 @@ function findPattern(text, i) {
     const slpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) - .{0,249}?\. \(\[Demo\b\]\(.*?\), \[Source Code\b\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with demo and source code
     const nodpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) - .{0,249}?\. \(\[Source Code\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with no demo
     const nospatt = /^\s{0,2}-\s\[.*?\]\(.*?\) - .{0,249}?\. \(\[Demo\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with no source code
+    const nodnoscpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) - .{0,249}?\. \(\[Clients\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with clients and no demo and no source code
+    const slcpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) - .{0,249}?\. \(\[Demo\b\]\(.*?\), \[Source Code\b\]\(.*?\), \[Clients\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with clients, demo and source code
+    const nodcpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) - .{0,249}?\. \(\[Source Code\]\(.*?\), \[Clients\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with clients and no demo
+    const noscpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) - .{0,249}?\. \(\[Demo\]\(.*?\), \[Clients\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with clients and no source code
     const pnodnospatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. `.*?` `.*?`/; // Regex for entries with proprietary with no demo and no source code
     const pslpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. \(\[Demo\b\]\(.*?\), \[Source Code\b\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with proprietary with demo and source code
     const pnodpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. \(\[Source Code\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with proprietary with no demo
     const pnospatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. \(\[Demo\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with proprietary with no source code
+    const pnodnoscpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. \(\[Clients\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with proprietary with no demo and no source code
+    const pslcpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. \(\[Demo\b\]\(.*?\), \[Source Code\b\]\(.*?\), \[Clients\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with proprietary with demo and source code
+    const pnodcpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. \(\[Source Code\]\(.*?\), \[Clients\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with proprietary with no demo
+    const pnoscpatt = /^\s{0,2}-\s\[.*?\]\(.*?\) `⚠` - .{0,249}?\. \(\[Demo\]\(.*?\), \[Clients\]\(.*?\)\) `.*?` `.*?`/; // Regex for entries with proprietary with no source code
+     
     if (nodnospatt.test(text) == true) {
         return true;
     } else if (slpatt.test(text) == true) {
@@ -135,6 +144,22 @@ function findPattern(text, i) {
     } else if (pnodpatt.test(text) == true) {
         return true;
     } else if (pnospatt.test(text) == true) {
+        return true;
+    } else if (nodnoscpatt.test(text) === true) {
+        return true;
+    } else if (slcpatt.test(text) === true) {
+        return true;
+    } else if (nodcpatt.test(text) === true) {
+        return true;
+    } else if (noscpatt.test(text) === true) {
+        return true;
+    } else if (pnodnoscpatt.test(text) === true) {
+        return true;
+    } else if (pslcpatt.test(text) === true) {
+        return true;
+    } else if (pnodcpatt.test(text) === true) {
+        return true;
+    } else if (pnoscpatt.test(text) === true) {
         return true;
     } else {
         //document.getElementById("alert").innerHTML = "Error(s) Found, check your syntax!";

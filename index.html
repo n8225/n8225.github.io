@@ -25,8 +25,14 @@
 
         <div class="jumbotron">
             <div class="container">
+                    <form class="row">
+                            <label for="nonfree">
+                                <input type="radio" name="free" id="free" onkeyup="formChanged()" onchange="formChanged()" checked /><Label for="free">Free</Label> 
+                                <input type="radio" name="free" id="propdep" onkeyup="formChanged()" onchange="formChanged()" /> <Label for="prodep">Proprietary Dependency</Label> 
+                                <input type="radio" name="free" id="nonfree" onkeyup="formChanged()" onchange="formChanged()" /> <Label for "nonfree">Non-Free/Proprietary</Label> 
+                            </label>
+                        </form>
                 <form id="eform" class="row">
-
                     <div class="form-group col-lg-5">
                         <label class="sr-only" for="name">Name</label>
                         <input type="text" class="form-control" name="name" id="name" onkeyup="formChanged()" onchange="formChanged()" placeholder="Name" required/>
@@ -36,14 +42,6 @@
                         <input type="text" class="form-control" name="sitelink" id="site" onkeyup="formChanged()" onchange="formChanged()" placeholder="Site Link" required />
                         <label class="sr-only" for="site">Link</label>
                     </div>
-
-                    <!--<div class="checkbox">
-                        <label for="proprietary">
-                            <input type="checkbox" name="proprietary" id="proprietary" onkeyup="formChanged()" onchange="formChanged()" required />
-                            <i class="helper"></i>
-                            Non-Free Dependency
-                        </label>
-                    </div>-->
                 </form>
                 <form  id="eform2" class="row">
                     <div class="form-group col-lg-12">
@@ -60,6 +58,11 @@
                     <div class="form-group col-lg-4">
                         <input type="text" class="form-control" name="sourcecode" id="source" onkeyup="formChanged()" onchange="formChanged()" placeholder="Source Code Link" />
                         <label class="sr-only" for="source">Source Code</label>
+                    </div>
+
+                    <div class="form-group col-lg-4">
+                        <input type="text" class="form-control" name="clients" id="clients" onkeyup="formChanged()" onchange="formChanged()" placeholder="Non Web Clients" />
+                        <label class="sr-only" for="clients">Clients</label>
                     </div>
 
                     <div class="form-group col-lg-2">
