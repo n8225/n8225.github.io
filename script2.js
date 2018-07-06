@@ -19,22 +19,17 @@ function formChanged() {
     switch(true) {
         case (free):
             a = " - ";
-            break;
         case (nonfree):
-            a =" `⊘ Proprietary` - ";
-            break;
+            a = " `⊘ Proprietary` - ";
         case (pdep):
             a = " `⚠` - ";
-            break;
     }
 
     switch(true) {
         case (demo == "" && sourcecode=="" && clients==""):
             entryResult = "- " + link(name, sitelink) + a + description + lang(license, nonfree) + liclang(language);
-            break;
         default:
-            entryResult = "- " + link(name, sitelink) + a + description + linkJoin(demo, sourcecode, clients) + lang(license, nonfree) + liclang(language)
-            break;
+            entryResult = "- " + link(name, sitelink) + a + description + linkJoin(demo, sourcecode, clients) + lang(license, nonfree) + liclang(language);
     }
 
     document.getElementById("formResult").className = "alert alert-success";
@@ -43,23 +38,30 @@ function formChanged() {
 
 function linkJoin (d, s, c) {
     let l = []
-    switch(true) {
-        case (d != ""):
-            l.push(link("Demo", d));
-        case (s != ""):
-            l.push(link("Source Code",s));
-        case (c != ""):
-            l.push(link("Clients", c));
-    }
+        if (d != "") {
+        console.log("d: " + l.push(d));
+        }
+        if (s != "") {
+        console.log("s: " + l.push(s));
+        }
+       if (c != "") {
+        console.log("c: " + l.push(c));
+       }
+
     switch(l.length) {
+        case (0):
+            return ""
         case (1):
-            return "(" + l[0] + ") ";
+            return "(" + l.shift() + ") ";
         case (2):
-            return "(" + l[0] + ", " + l[1] + ") "
+            return "(" + l.shift() + ", " + l.shift() + ") ";
         case (3):
-            return "(" + l[0] + ", " + l[1] + ", " + l[2] + ") "
+            return "(" + l.shift() + ", " + l.shift() + ", " + l.shift() + ") ";
     }
+
 };
+
+
 function lang (lic, nf) {
     switch(true) {
         case (nf != true):
