@@ -39,24 +39,24 @@ function formChanged() {
 function linkJoin (d, s, c) {
     let l = []
         if (d != "") {
-        console.log("d: " + l.push(d));
+        l.push(link("Demo",d))
         }
         if (s != "") {
-        console.log("s: " + l.push(s));
+        l.push(link("Source Code", s))
         }
        if (c != "") {
-        console.log("c: " + l.push(c));
+        l.push(link("Clients", c))
        }
 
     switch(l.length) {
         case (0):
             return ""
         case (1):
-            return "(" + l.shift() + ") ";
+            return " (" + l.shift() + ") ";
         case (2):
-            return "(" + l.shift() + ", " + l.shift() + ") ";
+            return " (" + l.shift() + ", " + l.shift() + ") ";
         case (3):
-            return "(" + l.shift() + ", " + l.shift() + ", " + l.shift() + ") ";
+            return " (" + l.shift() + ", " + l.shift() + ", " + l.shift() + ") ";
     }
 
 };
