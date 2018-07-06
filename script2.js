@@ -10,42 +10,72 @@ function formChanged() {
     var language = document.getElementsByName("language")[0].value;
     var pdep = document.getElementById("propdep").checked;
     var nonfree = document.getElementById("nonfree").checked;
-    var nonfree = document.getElementById("free").checked;
-    //console.log("demo value: " + (demo == ""));
+    var free = document.getElementById("free").checked;
+    
     //Throw in some non free and proprietary dependency symbols
-    if (nonfree == false && pdep == false) {
-        a = " - "
-    } else if(nonfree == true) {
-        pdep = false
-        a =" `⊘ Proprietary` - "
-    } else if (pdep == true) {
-        a = " `⚠` - "
-    } 
-
     if (description.slice(-1) != ".") { //Add that pesky . but only if they forget it.
         description += "."
     }
+    switch(true) {
+        case (free):
+            a = " - ";
+            break;
+        case (nonfree):
+            a =" `⊘ Proprietary` - ";
+            break;
+        case (pdep):
+            a = " `⚠` - ";
+            break;
+    }
 
-    if (demo == "" && sourcecode == "" && clients == "") { //choose the correct optional fields
-        entryResult = "- [" + name + "](" + sitelink + ")" + a + description + " `" + license + "` `" + language + "`";
-    } else if (demo != "" && sourcecode == "" && clients == "") {
-        entryResult = "- [" + name + "](" + sitelink + ")" + a + description + " ([Demo](" + demo + ")) " + "`" + license + "` `" + language + "`";
-    } else if (demo == "" && sourcecode !== "" && clients == "") {
-        entryResult = "- [" + name + "](" + sitelink + ")" + a + description + " ([Source Code](" + sourcecode + ")) " + "`" + license + "` `" + language + "`";
-    } else if (demo != "" && sourcecode != "" && clients == "") {
-        entryResult = "- [" + name + "](" + sitelink + ")" + a + description + " ([Demo](" + demo + ")," + " [Source Code](" + sourcecode + ")) " + "`" + license + "` `" + language + "`";
-    } else if (demo != "" && clients != "" && sourcecode == "") {
-        entryResult = "- [" + name + "](" + sitelink + ")" + a + description + " ([Demo](" + demo + "), [Clients](" + clients + ")) " + "`" + license + "` `" + language + "`";
-    } else if (demo == "" && clients != "" && sourcecode !== "") {
-        entryResult = "- [" + name + "](" + sitelink + ")" + a + description + " ([Source Code](" + sourcecode + "), [Clients](" + clients + ")) " + "`" + license + "` `" + language + "`";
-    } else if (demo != "" && clients != "" && sourcecode != "") {
-        entryResult = "- [" + name + "](" + sitelink + ")" + a + description + " ([Demo](" + demo + ")," + " [Source Code](" + sourcecode + "), [Clients](" + clients + ")) " + "`" + license + "` `" + language + "`";
-    } else { document.getElementById("formResult").innerHTML = "error!!"; }
+    switch(true) {
+        case (demo == "" && sourcecode=="" && clients==""):
+            entryResult = "- " + link(name, sitelink) + a + description + lang(license, nonfree) + liclang(language);
+            break;
+        default:
+            entryResult = "- " + link(name, sitelink) + a + description + linkJoin(demo, sourcecode, clients) + lang(license, nonfree) + liclang(language)
+            break;
+    }
+
     document.getElementById("formResult").className = "alert alert-success";
     document.getElementById("formResult").innerHTML = entryResult;
-    //document.getElementById("formResult").value = entryResult;
 };
 
+function linkJoin (d, s, c) {
+    let l = []
+    switch(true) {
+        case (d != ""):
+            l.push(link("Demo", d));
+        case (s != ""):
+            l.push(link("Source Code",s));
+        case (c != ""):
+            l.push(link("Clients", c));
+    }
+    switch(l.length) {
+        case (1):
+            return "(" + l[0] + ") ";
+        case (2):
+            return "(" + l[0] + ", " + l[1] + ") "
+        case (3):
+            return "(" + l[0] + ", " + l[1] + ", " + l[2] + ") "
+    }
+};
+function lang (lic, nf) {
+    switch(true) {
+        case (nf != true):
+        return liclang(lic) + " ";
+        case (nf == true && lic != ""):
+        return liclang(lic) + " ";
+        case (nf == true && lic == ""):
+        return "";
+    }
+};
+function liclang (s) {
+    return "`" + s + "`";
+};
+function link (n, l) {
+    return "[" + n + "](" + l + ")"; 
+};
 function logEntry () {
     var list = document.getElementById("formLog");
     var entry = document.createElement("li");
