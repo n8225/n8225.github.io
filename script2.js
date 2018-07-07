@@ -19,8 +19,10 @@ function formChanged() {
     switch(true) {
         case (free):
             a = " - ";
+            break;
         case (nonfree):
             a = " `⊘ Proprietary` - ";
+            break;
         case (pdep):
             a = " `⚠` - ";
     }
@@ -88,6 +90,4 @@ function logEntry () {
 }
 function resetForm(){
     document.getElementById("eform").reset();
-    document.getElementById("eform2").reset();
-    document.getElementById("eform3").reset();
 }

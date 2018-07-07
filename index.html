@@ -4,92 +4,97 @@
     <title></title>
     <meta charset="utf-8" />
     <!--<link href="style.css" rel="stylesheet" />-->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="container-fluid">
         <header class="header">
             <div class="title">
                 <h1>Awesome-SelfHosted Helper</h1>
             </div>
-            <div class="nav">
-                <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a href="index.html">Entry Creator</a></li>
-                    <li role="presentation"><a href="validate.html">File Validater</a></li>
-                    <li role="presentation"><a href="entryvalidate.html">Entry Validater</a></li>
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Entry Creator</a></li>
+                    <li class="nav-item"><a class="nav-link" href="validate.html">File Validater</a></li>
+                    <li class="nav-item"><a class="nav-link" href="entryvalidate.html">Entry Validater</a></li>
                 </ul>
             </div>
         </header>
 
         <div class="jumbotron">
-            <div class="container">
-                    <form class="row">
-                            <label for="nonfree">
-                                <input type="radio" name="free" id="free" onkeyup="formChanged()" onchange="formChanged()" checked /><Label for="free">Free</Label> 
-                                <input type="radio" name="free" id="propdep" onkeyup="formChanged()" onchange="formChanged()" /> <Label for="prodep">Proprietary Dependency</Label> 
-                                <input type="radio" name="free" id="nonfree" onkeyup="formChanged()" onchange="formChanged()" /> <Label for "nonfree">Non-Free/Proprietary</Label> 
-                            </label>
-                        </form>
-                <form id="eform" class="row">
-                    <div class="form-group col-lg-5">
+            <form id="eform">
+                    <div class="custom-control custom-radio custom-control-inline form-control-lg">
+                        <input type="radio" id="free" name="free" class="custom-control-input" onkeyup="formChanged()" onchange="formChanged()" value="free" checked />
+                        <Label class="custom-control-label" for="free">Free</Label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline form-control-lg">
+                        <input type="radio" id="propdep" name="free" class="custom-control-input" onkeyup="formChanged()" onchange="formChanged()" value="propdep" />
+                        <Label class="custom-control-label" for="propdep">Proprietary Dependency</Label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline form-control-lg">
+                        <input type="radio" id="nonfree" name="free" class="custom-control-input" onkeyup="formChanged()" onchange="formChanged()" value="nonfree" />
+                        <Label class="custom-control-label" for="nonfree">Non-Free/Proprietary</Label> 
+                    </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
                         <label class="sr-only" for="name">Name</label>
                         <input type="text" class="form-control" name="name" id="name" onkeyup="formChanged()" onchange="formChanged()" placeholder="Name" required/>
                     </div>
-
-                    <div class="form-group col-lg-7">
+                    <div class="form-group col">
                         <input type="text" class="form-control" name="sitelink" id="site" onkeyup="formChanged()" onchange="formChanged()" placeholder="Site Link" required />
                         <label class="sr-only" for="site">Link</label>
                     </div>
-                </form>
-                <form  id="eform2" class="row">
-                    <div class="form-group col-lg-12">
-                        <input type="text" class="form-control col-lg-4" name="description" id="desc" maxlength="250" pattern=".*\." onkeyup="formChanged()" onchange="formChanged()" placeholder="Description" required />
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <input type="text" class="form-control" name="description" id="desc" maxlength="250" onkeyup="formChanged()" onchange="formChanged()" placeholder="Description" required />
                         <label class="sr-only" for="desc">Description</label>
                     </div>
-                </form>
-                <form  id="eform3" class="row">
-                    <div class="form-group col-lg-4">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
                         <input type="text" class="form-control" name="demo" id="demo" onkeyup="formChanged()" onchange="formChanged()" placeholder="Demo Link" />
                         <label class="sr-only" for="demo">Demo</label>
-                    </div>
-
-                    <div class="form-group col-lg-4">
+                    </div>                    
+                    <div class="form-group col">
                         <input type="text" class="form-control" name="sourcecode" id="source" onkeyup="formChanged()" onchange="formChanged()" placeholder="Source Code Link" />
                         <label class="sr-only" for="source">Source Code</label>
                     </div>
-
-                    <div class="form-group col-lg-4">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
                         <input type="text" class="form-control" name="clients" id="clients" onkeyup="formChanged()" onchange="formChanged()" placeholder="Non Web Clients" />
                         <label class="sr-only" for="clients">Clients</label>
                     </div>
-
-                    <div class="form-group col-lg-2">
-                        <input type="text" class="form-control" name="license" id="license" onkeyup="formChanged()" onchange="formChanged()" placeholder="License" required />
+                    <div class="form-group col-3">
+                        <input type="text" class="form-control" name="license" id="license" onkeyup="formChanged()" onchange="formChanged()" placeholder="License"/>
                         <label class="sr-only" for="license">License</label>
                     </div>
-
-                    <div class="form-group col-lg-2">
+                    <div class="form-group col-3">
                         <input type="text" class="form-control" name="language" id="language" onkeyup="formChanged()" onchange="formChanged()" placeholder="Language" required />
                         <label class="sr-only" for="language">Language</label>
                     </div>
-
+                </div>
                     <button type="button" class="btn btn-primary" onclick="logEntry()">Log Entry</button>
                     <button type="button" class="btn btn-danger" onclick="resetForm()">Reset</button>
-                </form>
-                </div></div>
-                <div class="container">
-            <div class="result">
-                <h2>Your Entry will show up here.</h2>
-                <ul id="formLog" class="list-unstyled">
-                    <li id="formResult"></li>
-                </ul>
-            </div>
+            </form>
         </div>
     </div>
+
+    <div class="container-fluid">
+        <div class="result">
+            <h2>Your Entry will show up here.</h2>
+            <ul id="formLog" class="list-unstyled">
+                <li id="formResult"></li>
+            </ul>
+        </div>
     </div>
+
     <script src="script2.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 </body>
 </html>
