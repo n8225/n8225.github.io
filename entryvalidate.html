@@ -3,41 +3,39 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="container-fluid">
         <header class="header">
             <div class="title">
                 <h1>Awesome-SelfHosted Helper</h1>
             </div>
-            <div class="nav">
-                <ul class="nav nav-pills">
-                    <li role="presentation"><a href="index.html">Entry Creator</a></li>
-                    <li role="presentation"><a href="validate.html">File Validater</a></li>
-                    <li role="presentation" class="active"><a href="entryvalidate.html">Entry Validater</a></li>
+            <div>
+                <ul class="nav nav-tabs">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Entry Creator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="validate.html">File Validater</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="entryvalidate.html">Entry Validater</a></li>
                 </ul>
             </div>
         </header>
         <div class="jumbotron">
-            <div class="container">
-                <form id="eform">
-                    <!--<textarea id="textarea" class="form-control" required rows="4" placeholder="Paste the whole Awesome-Selfhosted README.md here or just a single entry and hit ok."></textarea>
-                    <label for="textarea" class="sr-only">Content to be validated.</label>
-                    <button type="submit" class="btn btn-primary" onclick="getText()">Submit</button>-->
-                    <p>Test an Entry</p>
-                    <textarea id="entryText" class="form-control" rows="3" required></textarea>
-                    <button type="button" class="btn btn-primary" onclick="testEntry()">Submit</button>
 
+                <form id="eform">
+                    <div class="form-group col">
+                        <p>Test an Entry</p>
+                        <textarea id="entryText" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="testEntry()">Submit</button>
                 </form>
-            </div>
         </div>
-        <div class="container">
+        <div class="container-fluid">
             <ul id="alert" class="list-unstyled"></ul>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>    
         <script src="script.js"></script>
 </body>
 </html>
