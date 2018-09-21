@@ -11,7 +11,80 @@ function formChanged() {
     var pdep = document.getElementById("propdep").checked;
     var nonfree = document.getElementById("nonfree").checked;
     var free = document.getElementById("free").checked;
-    
+
+    $( document ).tooltip();
+
+    var languageInput = document.getElementsByName("language")[0]
+    var licenseInput = document.getElementsByName("license")[0]
+
+    var languages = [
+      "C",
+      "C#",
+      "C++",
+      "Clojure",
+      "Erlang",
+      "Go",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Nodejs",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Rust",
+      "Scala",
+      "Shell",
+      "Typescript",
+      "Language 1/Language 2"
+    ];
+    var licenses = [
+      "AAL",
+      "AGPL-3.0",
+      "AGPL-3.0-only",
+      "Apache-2.0",
+      "APSL-2.0",
+      "Artistic-2.0",
+      "Beerware",
+      "BSD-2-Clause",
+      "BSD-3-Clause",
+      "CC-BY-NC-SA-3.0",
+      "CC-BY-SA-3.0",
+      "CC-BY-SA-4.0",
+      "CC0-1.0",
+      "CDDL-1.0",
+      "CECILL-B",
+      "CPAL-1.0",
+      "DPL",
+      "ECL-2.0",
+      "EPL-1.0",
+      "GPL-1.0",
+      "GPL-2.0",
+      "GPL-3.0",
+      "GPL-3.0-only",
+      "IPL-1.0",
+      "LGPL-2.1",
+      "LGPL-3.0",
+      "MIT",
+      "MPL-1.1",
+      "MPL-2.0",
+      "Multiple",
+      "OSL-3.0",
+      "Other",
+      "Sendmail",
+      "Unlicense",
+      "WTFPL",
+      "Zlib",
+      "ZPL-2.0"
+    ];
+    $(languageInput).autocomplete({
+      source: languages
+    });
+
+    $(licenseInput).autocomplete({
+      source: licenses
+    });
+
     //Throw in some non free and proprietary dependency symbols
     if (description.slice(-1) != ".") { //Add that pesky . but only if they forget it.
         description += "."
@@ -78,7 +151,7 @@ function liclang (s) {
     return "`" + s + "`";
 };
 function link (n, l) {
-    return "[" + n + "](" + l + ")"; 
+    return "[" + n + "](" + l + ")";
 };
 function logEntry () {
     var list = document.getElementById("formLog");
