@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 var entryResult;
 function formChanged() {
     var name = document.getElementsByName("name")[0].value;
@@ -33,9 +37,8 @@ function formChanged() {
         default:
             entryResult = "- " + link(name, sitelink) + a + description + linkJoin(demo, sourcecode, clients) + lang(license, nonfree) + liclang(language);
     }
-
-    document.getElementById("formResult").className = "alert alert-success";
-    document.getElementById("formResult").innerHTML = entryResult;
+    document.getElementById("eresult").className = "alert alert-success"
+    document.getElementById("eresult").innerHTML = entryResult;
 };
 
 function linkJoin (d, s, c) {
@@ -60,9 +63,7 @@ function linkJoin (d, s, c) {
         case (3):
             return " (" + l.shift() + ", " + l.shift() + ", " + l.shift() + ") ";
     }
-
 };
-
 
 function lang (lic, nf) {
     switch(true) {
@@ -80,14 +81,40 @@ function liclang (s) {
 function link (n, l) {
     return "[" + n + "](" + l + ")"; 
 };
+
+
 function logEntry () {
-    var list = document.getElementById("formLog");
-    var entry = document.createElement("li");
-    entry.className = "alert alert-info";
+    var list = document.getElementById("result");
+    var entry = document.createElement("div");    
+    entry.className = "alert alert-info alert-dismissible fade show";
     console.log(entryResult);
+    var dismissBtn = document.createElement("button");
+    setAttributes(dismissBtn, {"class": "close", "type": "button", "data-dismiss": "alert", "aria-label": "Close"})
+    var sp = document.createElement("span");
+    setAttributes(sp, {"aria-hidden": "true"});
+    sp.innerHTML = "&times;";
+    dismissBtn.appendChild(sp);
     entry.appendChild(document.createTextNode(entryResult));
+    entry.appendChild(dismissBtn);
     list.appendChild(entry);
+    
 }
+
 function resetForm(){
     document.getElementById("eform").reset();
+    formChanged();
 }
+
+var form = document.getElementById("eform");
+form.addEventListener('submit', function(event) {
+
+    if (!form.checkValidity().valid) {
+        event.preventDefault();
+    }
+    }, false);
+
+function setAttributes(el, attrs) {
+    for(var key in attrs) {
+        el.setAttribute(key, attrs[key]);
+    }
+    }
