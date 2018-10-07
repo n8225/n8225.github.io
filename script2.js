@@ -103,15 +103,12 @@ function resetForm(){
     document.getElementById("eform").reset();
 }
 
-var hasError = function (field) {
-    if (field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') return;
 
-    var validity = field.validity;
-};
+    var form = document.getElementById("eform");
+    form.addEventListener('submit', function(event) {
 
-document.addEventListener('blur', function (event) {
-    if (!event.target.form.classList.contains('validate')) return;
-
-    var error = event.target.validity;
-
-}, true);
+        if (!form.checkValidity().valid) {
+            event.preventDefault();
+        }
+            
+        }, false);
