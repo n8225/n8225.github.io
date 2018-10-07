@@ -102,6 +102,7 @@ function logEntry () {
 
 function resetForm(){
     document.getElementById("eform").reset();
+    formChanged();
 }
 
 var form = document.getElementById("eform");
