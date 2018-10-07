@@ -166,3 +166,4 @@ function findPattern(text, i) {
         return false;
     }
 };
+

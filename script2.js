@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 var entryResult;
 function formChanged() {
     var name = document.getElementsByName("name")[0].value;
@@ -81,13 +85,33 @@ function link (n, l) {
     return "[" + n + "](" + l + ")"; 
 };
 function logEntry () {
-    var list = document.getElementById("formLog");
-    var entry = document.createElement("li");
-    entry.className = "alert alert-info";
-    console.log(entryResult);
-    entry.appendChild(document.createTextNode(entryResult));
-    list.appendChild(entry);
+        var inpObj = document.getElementById("eform");
+        if (!inpObj.checkValidity()) {
+            console.log("invalid");
+        } else {
+            console.log("valid");
+        var list = document.getElementById("formLog");
+        var entry = document.createElement("li");    
+        entry.className = "alert alert-info";
+        console.log(entryResult);
+        entry.appendChild(document.createTextNode(entryResult));
+        list.appendChild(entry)
+        }
+;
 }
 function resetForm(){
     document.getElementById("eform").reset();
 }
+
+var hasError = function (field) {
+    if (field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') return;
+
+    var validity = field.validity;
+};
+
+document.addEventListener('blur', function (event) {
+    if (!event.target.form.classList.contains('validate')) return;
+
+    var error = event.target.validity;
+
+}, true);
