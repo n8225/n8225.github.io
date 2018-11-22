@@ -68,9 +68,9 @@ function linkJoin (d, s, c) {
 function lang (lic, nf) {
     switch(true) {
         case (nf != true):
-        return liclang(lic) + " ";
+        return " " + liclang(lic) + " ";
         case (nf == true && lic != ""):
-        return liclang(lic) + " ";
+        return " " + liclang(lic) + " ";
         case (nf == true && lic == ""):
         return "";
     }
