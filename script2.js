@@ -7,6 +7,7 @@ function formChanged() {
     var name = document.getElementsByName("name")[0].value;
     var sitelink = document.getElementsByName("sitelink")[0].value;
     var description = document.getElementsByName("description")[0].value;
+        description = description.charAt(0).toUpperCase() + description.slice(1);
     var demo = document.getElementsByName("demo")[0].value;
     var sourcecode = document.getElementsByName("sourcecode")[0].value;
     var clients = document.getElementsByName("clients")[0].value;
